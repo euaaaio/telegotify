@@ -1,0 +1,49 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Chat {
+  id            BigInt             @id
+
+  chatPlaylists ChatPlaylist[]
+}
+
+model ChatPlaylist {
+  chatId     BigInt
+  playlistId String
+
+  chat       Chat     @relation(fields: [chatId], references: [id])
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+
+  @@unique([chatId, playlistId])
+  @@index([playlistId])
+}
+
+model Playlist {
+  id             String          @id
+
+  chatPlaylists  ChatPlaylist[]
+  playlistTracks PlaylistTrack[]
+}
+
+model PlaylistTrack {
+  playlistId String
+  trackId    String
+
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+  track      Track    @relation(fields: [trackId], references: [id])
+
+  @@unique([playlistId, trackId])
+  @@index([playlistId])
+}
+
+model Track {
+  id             String          @id
+
+  playlistTracks PlaylistTrack[]
+}
