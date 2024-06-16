@@ -1,0 +1,25 @@
+{
+  "name": "telegotify",
+  "version": "0.0.1",
+  "author": "Eduard Aksamitov <e@euaaaio.ru>",
+  "license": "MIT",
+  "repository": "postanu/eslint-config",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@spotify/web-api-ts-sdk": "^1.2.0",
+    "@types/node-telegram-bot-api": "^0.64.6",
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "@postanu/eslint-config": "github:postanu/eslint-config",
+    "eslint": "^9.5.0",
+    "eslint-define-config": "^2.1.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0"
+  }
+}
