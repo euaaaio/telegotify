@@ -2,12 +2,21 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
+    "jsx": "preserve",
     "strict": true,
     "noEmit": true,
     "allowJs": true,
-    "sourceMap": true,
-    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "verbatimModuleSyntax": true,
+    "lib": [
+      "esnext"
+    ]
+  },
+  "ts-node": {
+    "swc": true,
+    "skipIgnore": true
   }
 }

@@ -6,20 +6,28 @@
   "repository": "postanu/eslint-config",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec 'node --loader ts-node/esm' ./index.ts",
+    "start": "node --loader ts-node/esm ./index.ts",
+    "migrate": "prisma db push && prisma migrate deploy"
   },
   "dependencies": {
+    "@prisma/client": "5.19.1",
     "@spotify/web-api-ts-sdk": "^1.2.0",
-    "@types/node-telegram-bot-api": "^0.64.6",
+    "@types/node-telegram-bot-api": "^0.64.7",
     "dotenv": "^16.4.5",
     "node-cron": "^3.0.3",
-    "node-telegram-bot-api": "^0.66.0"
+    "node-telegram-bot-api": "^0.66.0",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@postanu/eslint-config": "github:postanu/eslint-config",
-    "eslint": "^9.5.0",
+    "@postanu/eslint-config": "^7.0.0",
+    "@swc/core": "^1.7.22",
+    "@types/node-cron": "^3.0.11",
+    "eslint": "^9.9.1",
     "eslint-define-config": "^2.1.0",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^7.13.0"
+    "nodemon": "^3.1.4",
+    "prisma": "^5.19.1",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.4.0"
   }
 }
