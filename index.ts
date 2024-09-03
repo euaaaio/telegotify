@@ -4,15 +4,13 @@ import TelegramBot from 'node-telegram-bot-api'
 import { TELEGRAM_BOT_TOKEN } from './env/index.js'
 import { createLogger } from './logger/index.js'
 import { prisma } from './prisma/index.js'
-import { SpotifyLimitError } from './spotify/errors.js'
 import { extractPlaylistId, spotify } from './spotify/index.js'
 
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true })
 
 let playlists = await prisma.chatPlaylist.findMany()
 for (let { playlistId } of playlists) {
-	// cron.schedule('* * * * * *', () => checkForNewTracks(playlistId))
-	await checkForNewTracks(playlistId)
+	cron.schedule('*/5 * * * *', () => checkForNewTracks(playlistId))
 }
 
 bot.onText(/\/start/, async msg => {
@@ -75,7 +73,7 @@ bot.onText(/https:\/\/open.spotify.com\/playlist\/(.*)/, async (msg, match) => {
 
 	bot.sendMessage(chatId, 'Your playlist is ready! You will be notified about new tracks.')
 
-	cron.schedule('*/1 * * * *', () => checkForNewTracks(playlistId))
+	cron.schedule('*/5 * * * *', () => checkForNewTracks(playlistId))
 })
 
 async function checkForNewTracks (playlistId: string) {

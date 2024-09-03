@@ -1,6 +1,6 @@
 import type { IValidateResponses } from '@spotify/web-api-ts-sdk'
 
-import { SpotifyLimitError } from './errors'
+import { SpotifyLimitError } from './errors.js'
 
 // the same as DefaultResponseValidator from @spotify/web-api-ts-sdk
 export class CustomResponseValidator implements IValidateResponses {
