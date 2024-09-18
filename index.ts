@@ -77,7 +77,7 @@ bot.onText(/https:\/\/open.spotify.com\/playlist\/(.*)/, async (msg, match) => {
 })
 
 async function checkForNewTracks (playlistId: string) {
-	const log = createLogger(`Playlist(${playlistId})`)
+	const log = createLogger(`Playlist[${playlistId}]`)
 
 	try {
 		log('Checking for new tracks')
@@ -97,7 +97,7 @@ async function checkForNewTracks (playlistId: string) {
 
 		if (newTracks.length > 0) {
 			for (let trackId of newTracks) {
-				const logTrack = createLogger(`Playlist(${playlistId})/${trackId})`)
+				const logTrack = createLogger(`Playlist[${playlistId}][${trackId}]`)
 
 				logTrack('Saving new track')
 				await prisma.track.upsert({
